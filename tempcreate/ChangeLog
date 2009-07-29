@@ -1,0 +1,69 @@
+2009-04-22  Meteor Liu  <meteor1113@gmail.com>
+
+	* Add lowercase filename option.
+
+2009-01-21  Meteor Liu  <meteor1113@gmail.com>
+
+	* licenses/*: Remove $Id$.
+
+2008-12-26  Meteor Liu  <meteor1113@gmail.com>
+
+	* tkcreate.py: Remove Tix depend, now only use Tkinter.
+
+2008-12-25  Meteor Liu  <meteor1113@gmail.com>
+
+	* tkcreate.py: Modify to use Tix.
+
+	* wxcreate.py: save current value to restore.
+
+	* Add common.py and tempcreateini.py.
+
+	* Change version to email.
+
+2008-12-24  Meteor Liu  <meteor1113@gmail.com>
+
+	* Rename directory copyrights to licenses.
+	Delete directory authors.
+
+2008-12-23  Meteor Liu  <meteor1113@gmail.com>
+
+	* Add folder authors and copyrights.
+
+2008-11-28  Meteor Liu  <meteor1113@gmail.com>
+
+	* templates/cpp-hpp.template: Remove destructor's virtual.
+
+2008-11-13  Meteor Liu  <meteor1113@gmail.com>
+
+	* wxcreate.py (MyFrame.__init__): Change display "Class Name:" to "ClassName:".
+
+	* tkcreate.py (TkCreateClass.__init__): Likewise.
+
+2008-11-12  Meteor Liu  <meteor1113@gmail.com>
+
+	* createpython.py (CreateFile): "# \n" => "#\n".
+
+	* createc.py (CreateFile): " * \n" => " *\n".
+
+	* createobjc.py (CreateFile): Likewise.
+
+	* createcpp.py (CreateFile): Likewise.
+
+2008-11-11  Meteor Liu  <meteor1113@gmail.com>
+
+	* wxcreate.py: Add c language support.
+
+	* tkcreate.py: Likewise.
+
+	* createc.py: New add.
+
+	* templates/cpp-hpp.template: Rename cpp-h.template to cpp-hpp.template.
+
+	* Modify all copyright.
+
+	* Add templates/c-h.template && templates/c-c.template.
+
+2008-11-03  Meteor Liu  <meteor1113@gmail.com>
+
+	* guicreate.pyw (COPYRIGHT): Modify copyright.
+

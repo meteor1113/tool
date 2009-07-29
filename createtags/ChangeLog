@@ -1,0 +1,36 @@
+2009-04-17  Meteor Liu  <meteor1113@gmail.com>
+
+	* Modify cscope, don't create cscope.files.
+	* Remove win/ebrowse.bat, linux/ebrowse.sh, mac/ebrowse.command.
+	* win/*.bat: Modify %PATH%.
+
+2009-03-19  Meteor Liu  <meteor1113@gmail.com>
+
+	* win/*.bat: Change comment.
+	* Add win/gtags.bat.
+	Add win/htags.bat.
+	Add linux/gtags.sh.
+	Add linux/htags.sh.
+	Add mac/gtags.command.
+	Add mac/htags.command.
+
+2009-01-24  Meteor Liu  <meteor1113@gmail.com>
+
+	* Add *.el to all.
+
+2008-12-24  Meteor Liu  <meteor1113@gmail.com>
+
+	* Add include and all sub directories to all.
+
+2008-11-25  Meteor Liu  <meteor1113@gmail.com>
+
+	* Add include/sys directory to all.
+
+2008-11-11  Meteor Liu  <meteor1113@gmail.com>
+
+	* Modify all copyright.
+
+2008-11-04  Meteor Liu  <meteor1113@gmail.com>
+
+	* Change all copyright.
+
