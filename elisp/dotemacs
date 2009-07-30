@@ -1,3 +1,5 @@
+;; -*- mode: emacs-lisp -*-
+
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -18,7 +20,7 @@
 
 (load "d:/project/common/tool/elisp/emacs-init.el")
 (load "d:/project/common/tool/elisp/jde-init.el")
-(load "d:/project/common/wiki/muse-init.el")
+(load "d:/project/common/note/note-init.el")
 
 (semantic-add-system-include "C:/MinGW/include" 'c++-mode)
 (semantic-add-system-include "C:/MinGW/include/c++/3.4.5" 'c++-mode)
