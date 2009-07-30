@@ -1,3 +1,11 @@
+2009-07-30  Meteor Liu  <meteor1113@gmail.com>
+
+	* emacs-init.el: Add ffap setting.
+	: Add win32 sepcial setting.
+	: (from cedet::eieio)Add (enable-visual-studio-bookmarks), can use bookmark like visual studio.
+	: Open (which-function-mode t).
+	(progmode-common-function): Open (hs-minor-mode t).
+
 2009-07-28  Meteor Liu  <meteor1113@gmail.com>
 
 	* snippets/text-mode/org-mode/*: add some org-mode snippets.(from git://github.com/RickMoynihan/yasnippet-org-mode)

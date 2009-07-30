@@ -21,10 +21,3 @@
 (load "d:/project/common/tool/elisp/emacs-init.el")
 (load "d:/project/common/tool/elisp/jde-init.el")
 (load "d:/project/common/note/note-init.el")
-
-(semantic-add-system-include "C:/MinGW/include" 'c++-mode)
-(semantic-add-system-include "C:/MinGW/include/c++/3.4.5" 'c++-mode)
-(semantic-add-system-include "C:/Program Files/Microsoft Visual Studio/VC98/MFC/Include" 'c++-mode)
-
-;(semantic-add-system-include "/usr/include" 'c++-mode)
-;(semantic-add-system-include "/usr/include/c++/4.0.0" 'c++-mode)

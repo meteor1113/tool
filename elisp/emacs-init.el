@@ -34,7 +34,7 @@
 (require 'company)
 (require 'doxymacs)
 (require 'gtags)
-(require 'htmlize)                      ; org-mode html syntax highlighting
+(require 'htmlize)
 (require 'smart-compile)
 (require 'tabbar)
 (require 'unicad)
@@ -55,6 +55,7 @@
 (icomplete-mode t)
 (column-number-mode t)
 (show-paren-mode t)
+(ffap-bindings)
 (recentf-mode t)
 (savehist-mode t)
 (desktop-save-mode t)
@@ -62,6 +63,7 @@
 (setq-default save-place t)
 (setq org-log-done 'time)
 (add-hook 'org-mode-hook 'imenu-add-menubar-index)
+(which-function-mode t)
 ;; (global-hl-line-mode t)
 ;; (linum-mode t)
 ;; (setq default-tab-width 4)
@@ -91,7 +93,7 @@
 
 (defun progmode-common-function ()
   (setq indent-tabs-mode nil)
-  ;; (hs-minor-mode t)
+  (hs-minor-mode t)
   (imenu-add-menubar-index)
   (cscope:hook))
 
@@ -115,6 +117,7 @@
 ;; (semantic-load-enable-guady-code-helpers)
 ;; (semantic-load-enable-excessive-code-helpers)
 (semantic-load-enable-semantic-debugging-helpers)
+(enable-visual-studio-bookmarks)
 
 (setq semanticdb-default-save-directory "~/.emacs.d/")
 ;; (setq semanticdb-project-roots (list (expand-file-name "/")))
@@ -134,6 +137,19 @@
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1)))
 (setq ecb-tip-of-the-day nil
       ecb-auto-compatibility-check nil)
+
+
+;;; win32 setting
+(if (eq system-type 'windows-nt)
+    (progn
+      (setq ffap-c-path
+            '("C:/MinGW/include"
+              "C:/MinGW/include/c++/3.4.5"
+              "C:/Program Files/Microsoft Visual Studio/VC98/MFC/Include"))
+      (semantic-add-system-include "C:/MinGW/include" 'c++-mode)
+      (semantic-add-system-include "C:/MinGW/include/c++/3.4.5" 'c++-mode)
+      (semantic-add-system-include
+       "C:/Program Files/Microsoft Visual Studio/VC98/MFC/Include" 'c++-mode)))
 
 
 (provide 'emacs-init)
