@@ -100,8 +100,8 @@
 
 (add-hook 'c-mode-common-hook
           (lambda ()
-            (setq tab-width 4)
             (program-common-function)
+            ;; (setq tab-width 4)
             ;; (c-set-style "stroustrup")
             (doxymacs-mode)))
 (add-hook 'c-mode-hook (lambda () (c-set-style "stroustrup")))
