@@ -1,5 +1,5 @@
 ;;;
-;; Copyright (C) 2008 Meteor Liu
+;; Copyright (C) 2008-2009 Meteor Liu
 ;;
 ;; This code has been released into the Public Domain.
 ;; You may do whatever you like with it.
@@ -9,15 +9,13 @@
 ;; @date 2008-10-27
 
 
-;;; get this file's directory
+;;; load-path setting
 (defvar current-file-dir nil
   "current file's directory.")
 (make-variable-buffer-local 'current-file-dir)
 (setq current-file-dir
       (file-name-directory (or load-file-name (buffer-file-name))))
 
-
-;;; add this dir and subdirs to load-path.
 (add-to-list 'load-path current-file-dir)
 (let ((lisp-dir (expand-file-name "lisp" current-file-dir)))
   (and (add-to-list 'load-path lisp-dir)
@@ -27,7 +25,7 @@
        (add-to-list 'load-path (expand-file-name "wubi" lisp-dir))))
 
 
-;;; all features need to load
+;;; all requires
 (require 'saveplace)
 
 (require 'auto-complete)
