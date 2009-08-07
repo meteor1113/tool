@@ -69,13 +69,14 @@
 ;; (setq default-tab-width 4)
 
 (tabbar-mode t)
+
+
+;;; complete setting
 (yas/load-directory (expand-file-name "snippets" current-file-dir))
 (add-hook 'org-mode-hook
           #'(lambda ()
               (local-set-key [tab] 'yas/expand))) ; let org-mode use yasnippet
 
-
-;;; complete setting
 (global-auto-complete-mode t)
 (add-to-list 'ac-modes 'objc-mode)
 
@@ -85,13 +86,13 @@
 (define-key company-mode-map (kbd "M-p") 'company-select-previous)
 
 
-;;; progmodes setting
+;;; program setting
 (setq auto-mode-alist
       (append '(("\\.h$" . c++-mode)
                 ("\\.c$" . c++-mode))
               auto-mode-alist))
 
-(defun progmode-common-function ()
+(defun program-common-function ()
   (setq indent-tabs-mode nil)
   (hs-minor-mode t)
   (imenu-add-menubar-index)
@@ -100,15 +101,15 @@
 (add-hook 'c-mode-common-hook
           (lambda ()
             (setq tab-width 4)
-            (progmode-common-function)
+            (program-common-function)
             ;; (c-set-style "stroustrup")
             (doxymacs-mode)))
 (add-hook 'c-mode-hook (lambda () (c-set-style "stroustrup")))
 (add-hook 'c++-mode-hook (lambda () (c-set-style "stroustrup")))
 (add-hook 'java-mode-hook (lambda () (c-set-style "java")))
 (add-hook 'objc-mode-hook (lambda () (c-set-style "stroustrup")))
-(add-hook 'emacs-lisp-mode-hook 'progmode-common-function)
-(add-hook 'python-mode-hook 'progmode-common-function)
+(add-hook 'emacs-lisp-mode-hook 'program-common-function)
+(add-hook 'python-mode-hook 'program-common-function)
 
 
 ;;; cedet setting
