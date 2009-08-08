@@ -1,3 +1,9 @@
+2009-08-08  Meteor Liu  <meteor1113@gmail.com>
+
+	* emacs-init.el: split to init-basic.el, init-cedet.el, init-misc.el, init-mac.el, init-winnt.el
+	* py-init.el: Change file name to init-ropemacs.el
+	* jde-init.el: Change file name init-jde.el
+
 2009-08-07  Meteor Liu  <meteor1113@gmail.com>
 
 	* emacs-init.el (c-mode-common-hook): Remove (setq tab-width 4).
