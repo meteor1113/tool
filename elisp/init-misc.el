@@ -12,6 +12,7 @@
 ;;; load-path setting
 (let* ((cur-dir (file-name-directory (or load-file-name (buffer-file-name))))
        (lisp-dir (expand-file-name "lisp" cur-dir)))
+  (add-to-list 'load-path cur-dir)
   (add-to-list 'load-path lisp-dir)
   (add-to-list 'load-path (expand-file-name "auto-complete" lisp-dir))
   (add-to-list 'load-path (expand-file-name "company" lisp-dir))
