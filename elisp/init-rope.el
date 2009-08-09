@@ -25,4 +25,4 @@
 (setq ropemacs-enable-autoimport t)
 
 
-(provide 'init-ropemacs)
+(provide 'init-rope)
