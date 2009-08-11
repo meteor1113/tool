@@ -36,7 +36,7 @@
 
 (add-hook 'c-mode-common-hook 'doxymacs-mode)
 
-(let* ((cur-dir (file-name-directory (or load-file-name (buffer-file-name)))))
+(let ((cur-dir (file-name-directory (or load-file-name (buffer-file-name)))))
   (yas/load-directory (expand-file-name "snippets" cur-dir)))
 (add-hook 'org-mode-hook
           #'(lambda ()

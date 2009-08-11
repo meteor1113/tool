@@ -14,7 +14,7 @@
        '("C:/MinGW/include"
          "C:/MinGW/include/c++/3.4.5"
          "C:/Program Files/Microsoft Visual Studio/VC98/MFC/Include")))
-  (setq ffap-c-path include-dir)
+  (setq ffap-c-path (append ffap-c-path include-dir))
   (if (fboundp 'semantic-add-system-include)
       (dolist (dir include-dir)
         (semantic-add-system-include dir 'c++-mode))))
