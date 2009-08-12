@@ -1,3 +1,7 @@
+2009-08-12  Meteor Liu  <meteor1113@gmail.com>
+
+	* init-basic.el (saveplace): Add (require 'saveplace). because only (setq-default save-place t) can't work.
+
 2009-08-09  Meteor Liu  <meteor1113@gmail.com>
 
 	* init-ropemacs.el: Rename to init-rope.el

@@ -9,6 +9,9 @@
 ;; @date 2009-08-08
 
 
+(require 'saveplace)
+
+
 ;;; basic setting
 (setq user-full-name "Meteor Liu")
 (setq user-mail-address "meteor1113@gmail.com")
