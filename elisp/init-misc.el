@@ -10,9 +10,9 @@
 
 
 ;;; load-path setting
-(let* ((cur-dir (file-name-directory (or load-file-name (buffer-file-name))))
-       (lisp-dir (expand-file-name "lisp" cur-dir)))
-  (add-to-list 'load-path cur-dir)
+(let* ((this-dir (file-name-directory (or load-file-name (buffer-file-name))))
+       (lisp-dir (expand-file-name "lisp" this-dir)))
+  (add-to-list 'load-path this-dir)
   (add-to-list 'load-path lisp-dir)
   (add-to-list 'load-path (expand-file-name "auto-complete" lisp-dir))
   (add-to-list 'load-path (expand-file-name "company" lisp-dir))
@@ -36,8 +36,8 @@
 
 (add-hook 'c-mode-common-hook 'doxymacs-mode)
 
-(let ((cur-dir (file-name-directory (or load-file-name (buffer-file-name)))))
-  (yas/load-directory (expand-file-name "snippets" cur-dir)))
+(let ((this-dir (file-name-directory (or load-file-name (buffer-file-name)))))
+  (yas/load-directory (expand-file-name "snippets" this-dir)))
 (add-hook 'org-mode-hook
           #'(lambda ()
               (local-set-key [tab] 'yas/expand))) ; let org-mode use yasnippet
