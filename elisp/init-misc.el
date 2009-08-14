@@ -14,9 +14,10 @@
        (lisp-dir (expand-file-name "lisp" this-dir)))
   (add-to-list 'load-path this-dir)
   (add-to-list 'load-path lisp-dir)
-  (add-to-list 'load-path (expand-file-name "auto-complete" lisp-dir))
-  (add-to-list 'load-path (expand-file-name "company" lisp-dir))
-  (add-to-list 'load-path (expand-file-name "doxymacs" lisp-dir)))
+  (let ((old-dir default-directory))
+    (cd lisp-dir)
+    (normal-top-level-add-subdirs-to-load-path)
+    (cd old-dir)))
 
 
 (require 'auto-complete)
@@ -34,7 +35,10 @@
 ;;; misc setting
 (tabbar-mode t)
 
-(add-hook 'c-mode-common-hook 'doxymacs-mode)
+(add-hook 'c-mode-common-hook
+          '(lambda ()
+             (doxymacs-mode t)
+             (doxymacs-font-lock)))
 
 (let ((this-dir (file-name-directory (or load-file-name (buffer-file-name)))))
   (yas/load-directory (expand-file-name "snippets" this-dir)))

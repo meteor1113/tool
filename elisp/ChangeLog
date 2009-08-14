@@ -1,3 +1,12 @@
+2009-08-14  Meteor Liu  <meteor1113@gmail.com>
+
+	* init-basic.el: Add (global-highlight-changes-mode t).
+	(show-trailing-whitespace): (setq-default show-trailing-whitespace t).
+	(org-mode-hook): Add (auto-fill-mode t) for org-mode.
+	(bookmark-save-flag): Add (setq bookmark-save-flag 1).
+
+	* init-misc.el (c-mode-common-hook): Add (doxymacs-font-lock).
+
 2009-08-12  Meteor Liu  <meteor1113@gmail.com>
 
 	* init-basic.el (saveplace): Add (require 'saveplace). because only (setq-default save-place t) can't work.

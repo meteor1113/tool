@@ -26,16 +26,27 @@
 (ffap-bindings)
 (global-auto-revert-mode t)
 (which-function-mode t)
+(setq bookmark-save-flag 1)
+(global-highlight-changes-mode t)
+(setq-default show-trailing-whitespace t)
 (savehist-mode t)
 (recentf-mode t)
 (setq-default save-place t)
 (desktop-save-mode t)
+
 ;; (global-hl-line-mode t)
-;; (linum-mode t)
-;; (setq default-tab-width 4)
+;; (blink-cursor-mode t)
+;; (set-cursor-color "black")              ; hl-line-mode need black cursor
+;; (add-to-list 'after-make-frame-functions
+;;              (lambda (new-frame)
+;;                (select-frame new-frame)
+;;                (set-cursor-color "black")))
 
 (setq org-log-done 'time)
-(add-hook 'org-mode-hook 'imenu-add-menubar-index)
+(add-hook 'org-mode-hook
+          (lambda ()
+            (imenu-add-menubar-index)
+            (auto-fill-mode t)))
 
 
 ;;; program setting
