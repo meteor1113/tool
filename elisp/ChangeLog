@@ -1,5 +1,7 @@
 2009-08-14  Meteor Liu  <meteor1113@gmail.com>
 
+	* init-cedet.el (semanticdb-default-save-directory): Change from "~/.emacs.d" to"~/.semanticdb".
+
 	* init-basic.el: Add (global-highlight-changes-mode t).
 	(show-trailing-whitespace): (setq-default show-trailing-whitespace t).
 	(org-mode-hook): Add (auto-fill-mode t) for org-mode.
