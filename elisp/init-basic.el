@@ -34,13 +34,8 @@
 (setq-default save-place t)
 (desktop-save-mode t)
 
-;; (global-hl-line-mode t)
-;; (blink-cursor-mode t)
-;; (set-cursor-color "black")              ; hl-line-mode need black cursor
-;; (add-to-list 'after-make-frame-functions
-;;              (lambda (new-frame)
-;;                (select-frame new-frame)
-;;                (set-cursor-color "black")))
+(unless (eq system-type 'darwin)
+  (global-hl-line-mode t))
 
 (setq org-log-done 'time)
 (add-hook 'org-mode-hook
