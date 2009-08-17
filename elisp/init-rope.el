@@ -9,9 +9,6 @@
 ;; @date 2009-02-17
 
 
-(require 'pymacs)
-
-
 ;;; pymacs setting
 (autoload 'pymacs-apply "pymacs")
 (autoload 'pymacs-call "pymacs")

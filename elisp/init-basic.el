@@ -9,9 +9,6 @@
 ;; @date 2009-08-08
 
 
-(require 'saveplace)
-
-
 ;;; basic setting
 (setq user-full-name "Meteor Liu")
 (setq user-mail-address "meteor1113@gmail.com")
@@ -27,15 +24,14 @@
 (global-auto-revert-mode t)
 (which-function-mode t)
 (setq bookmark-save-flag 1)
-(global-highlight-changes-mode t)
 (setq-default show-trailing-whitespace t)
+;; (global-highlight-changes-mode t)
+;; (global-hl-line-mode t)
+(require 'saveplace)
+(setq-default save-place t)
 (savehist-mode t)
 (recentf-mode t)
-(setq-default save-place t)
 (desktop-save-mode t)
-
-(unless (eq system-type 'darwin)
-  (global-hl-line-mode t))
 
 (setq org-log-done 'time)
 (add-hook 'org-mode-hook

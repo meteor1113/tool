@@ -20,35 +20,34 @@
     (cd old-dir)))
 
 
-(require 'auto-complete)
-(require 'company)
-(require 'doxymacs)
+;;; misc setting
 (require 'gtags)
 (require 'htmlize)
 (require 'smart-compile)
-(require 'tabbar)
 (require 'unicad)
 (require 'xcscope)
-(require 'yasnippet-bundle)
 
-
-;;; misc setting
+(require 'tabbar)
 (tabbar-mode t)
 
+(require 'doxymacs)
 (add-hook 'c-mode-common-hook
           '(lambda ()
              (doxymacs-mode t)
              (doxymacs-font-lock)))
 
+(require 'yasnippet-bundle)
 (let ((this-dir (file-name-directory (or load-file-name (buffer-file-name)))))
   (yas/load-directory (expand-file-name "snippets" this-dir)))
 (add-hook 'org-mode-hook
           #'(lambda ()
               (local-set-key [tab] 'yas/expand))) ; let org-mode use yasnippet
 
+(require 'auto-complete)
 (global-auto-complete-mode t)
 (add-to-list 'ac-modes 'objc-mode)
 
+(require 'company)
 (global-company-mode t)
 (setq company-idle-delay nil)
 (define-key company-mode-map (kbd "M-n") 'company-select-next)

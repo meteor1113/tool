@@ -9,10 +9,8 @@
 ;; @date 2009-02-17
 
 
-(require 'jde)
-
-
 ;;; jde setting
+(require 'jde)
 (setq jde-enable-abbrev-mode t)
 (if (boundp 'ac-modes)
     (add-to-list 'ac-modes 'jde-mode))

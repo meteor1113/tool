@@ -9,17 +9,14 @@
 ;; @date 2008-08-08
 
 
-(require 'cedet)
-(require 'ecb)
-
-
 ;;; cedet setting
+(require 'cedet)
 ;; (semantic-load-enable-minimum-features)
 ;; (semantic-load-enable-all-exuberent-ctags-support)
 (semantic-load-enable-code-helpers)
 ;; (semantic-load-enable-guady-code-helpers)
 ;; (semantic-load-enable-excessive-code-helpers)
-;; (semantic-load-enable-semantic-debugging-helpers)
+(semantic-load-enable-semantic-debugging-helpers)
 (enable-visual-studio-bookmarks)
 
 (setq semanticdb-default-save-directory (expand-file-name "~/.semanticdb"))
@@ -36,6 +33,7 @@
 
 
 ;;; ecb setting
+(require 'ecb)
 (setq ecb-tip-of-the-day nil)
 (setq ecb-auto-compatibility-check nil)
 (setq ecb-primary-secondary-mouse-buttons 'mouse-1--C-mouse-1)
