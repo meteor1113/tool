@@ -21,8 +21,8 @@
 
 
 ;;; misc setting
-(require 'gtags)
-(require 'htmlize)
+;; (require 'gtags)
+;; (require 'htmlize)
 (require 'smart-compile)
 (require 'unicad)
 (require 'xcscope)

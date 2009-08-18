@@ -1,3 +1,7 @@
+2009-08-18  Meteor Liu  <meteor1113@gmail.com>
+
+	* init-misc.el: Close (require 'gtags) and (require 'htmlize).
+
 2009-08-17  Meteor Liu  <meteor1113@gmail.com>
 
 	* init-basic.el (org-log-done): Close (global-hl-line-mode t).
