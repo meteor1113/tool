@@ -1,3 +1,7 @@
+2009-08-21  Meteor Liu  <meteor1113@gmail.com>
+
+	* init-basic.el (cperl-mode-hook): For perl.
+
 2009-08-18  Meteor Liu  <meteor1113@gmail.com>
 
 	* init-misc.el: Close (require 'gtags) and (require 'htmlize).

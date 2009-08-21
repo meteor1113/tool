@@ -52,12 +52,26 @@
   (imenu-add-menubar-index))
 
 (add-hook 'c-mode-common-hook 'program-common-function)
+
 (add-hook 'c-mode-hook (lambda () (c-set-style "stroustrup")))
+
 (add-hook 'c++-mode-hook (lambda () (c-set-style "stroustrup")))
+
 (add-hook 'java-mode-hook (lambda () (c-set-style "java")))
+
 (add-hook 'objc-mode-hook (lambda () (c-set-style "stroustrup")))
+
 (add-hook 'emacs-lisp-mode-hook 'program-common-function)
+
 (add-hook 'python-mode-hook 'program-common-function)
+
+(defalias 'perl-mode 'cperl-mode)
+(add-hook 'cperl-mode-hook 'program-common-function)
+(add-hook 'cperl-mode-hook
+          '(lambda ()
+             (cperl-set-style "PerlStyle")
+             (setq cperl-continued-brace-offset -4)
+             (abbrev-mode t)))
 
 
 (provide 'init-basic)
