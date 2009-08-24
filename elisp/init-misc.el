@@ -46,6 +46,12 @@
 (require 'auto-complete)
 (global-auto-complete-mode t)
 (add-to-list 'ac-modes 'objc-mode)
+(require 'auto-complete-cpp)
+(ac-c++-init)
+(require 'auto-complete-css)
+(ac-css-init)
+(require 'auto-complete-emacs-lisp)
+(ac-emacs-lisp-init)
 
 (require 'company)
 (global-company-mode t)

@@ -1,3 +1,11 @@
+2009-08-24  Meteor Liu  <meteor1113@gmail.com>
+
+	* init-basic.el (perl-mode-hook): Setup for perl-mode and cperl-mode.
+
+	* lisp/auto-complete/auto-complete.el: Upgrade to 0.3.0 alpha.
+
+	* init-misc.el: Using auto-complete for cpp/css/elisp.
+
 2009-08-21  Meteor Liu  <meteor1113@gmail.com>
 
 	* init-basic.el (cperl-mode-hook): For perl.

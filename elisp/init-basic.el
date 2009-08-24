@@ -41,11 +41,6 @@
 
 
 ;;; program setting
-(setq auto-mode-alist
-      (append '(("\\.h$" . c++-mode)
-                ("\\.c$" . c++-mode))
-              auto-mode-alist))
-
 (defun program-common-function ()
   (setq indent-tabs-mode nil)
   (hs-minor-mode t)
@@ -53,6 +48,7 @@
 
 (add-hook 'c-mode-common-hook 'program-common-function)
 
+(add-to-list 'auto-mode-alist '("\\.[ch]\\'" . c++-mode))
 (add-hook 'c-mode-hook (lambda () (c-set-style "stroustrup")))
 
 (add-hook 'c++-mode-hook (lambda () (c-set-style "stroustrup")))
@@ -65,7 +61,12 @@
 
 (add-hook 'python-mode-hook 'program-common-function)
 
-(defalias 'perl-mode 'cperl-mode)
+(add-hook 'perl-mode-hook 'program-common-function)
+;; (defalias 'perl-mode 'cperl-mode)
+(add-to-list 'auto-mode-alist '("\\.\\([pP][Llm]\\|al\\)\\'" . cperl-mode))
+(add-to-list 'interpreter-mode-alist '("perl" . cperl-mode))
+(add-to-list 'interpreter-mode-alist '("perl5" . cperl-mode))
+(add-to-list 'interpreter-mode-alist '("miniperl" . cperl-mode))
 (add-hook 'cperl-mode-hook 'program-common-function)
 (add-hook 'cperl-mode-hook
           '(lambda ()
