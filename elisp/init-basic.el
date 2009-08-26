@@ -16,6 +16,7 @@
 (tool-bar-mode t)
 (set-scroll-bar-mode 'right)
 (cua-mode t)
+(setq cua-keep-region-after-copy t)
 (ido-mode t)
 (icomplete-mode t)
 (column-number-mode t)
