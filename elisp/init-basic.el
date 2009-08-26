@@ -20,6 +20,7 @@
 (ido-mode t)
 (icomplete-mode t)
 (column-number-mode t)
+(display-time-mode t)
 (show-paren-mode t)
 (ffap-bindings)
 (global-auto-revert-mode t)
