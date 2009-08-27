@@ -23,9 +23,9 @@
 ;;; misc setting
 ;; (require 'gtags)
 ;; (require 'htmlize)
-(require 'smart-compile)
-(require 'unicad)
-(require 'xcscope)
+(require 'smart-compile nil t)
+(require 'unicad nil t)
+(require 'xcscope nil t)
 
 (require 'tabbar)
 (tabbar-mode t)
