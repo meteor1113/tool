@@ -41,6 +41,10 @@
             (imenu-add-menubar-index)
             (auto-fill-mode t)))
 
+(add-to-list 'auto-mode-alist
+             '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\)\\'" . nxml-mode))
+(setq nxml-bind-meta-tab-to-complete-flag t)
+
 
 ;;; program setting
 (defun program-common-function ()
@@ -50,7 +54,8 @@
 
 (add-hook 'c-mode-common-hook 'program-common-function)
 
-(add-to-list 'auto-mode-alist '("\\.[ch]\\'" . c++-mode))
+(add-to-list 'auto-mode-alist
+             '("\\.[ch]\\'" . c++-mode))
 (add-hook 'c-mode-hook (lambda () (c-set-style "stroustrup")))
 
 (add-hook 'c++-mode-hook (lambda () (c-set-style "stroustrup")))
@@ -65,7 +70,8 @@
 
 (add-hook 'perl-mode-hook 'program-common-function)
 ;; (defalias 'perl-mode 'cperl-mode)
-(add-to-list 'auto-mode-alist '("\\.\\([pP][Llm]\\|al\\)\\'" . cperl-mode))
+(add-to-list 'auto-mode-alist
+             '("\\.\\([pP][Llm]\\|al\\)\\'" . cperl-mode))
 (add-to-list 'interpreter-mode-alist '("perl" . cperl-mode))
 (add-to-list 'interpreter-mode-alist '("perl5" . cperl-mode))
 (add-to-list 'interpreter-mode-alist '("miniperl" . cperl-mode))
