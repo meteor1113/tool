@@ -1,3 +1,7 @@
+2009-08-28  Meteor Liu  <meteor1113@gmail.com>
+
+	* init-basic.el: Add nxml setting.
+
 2009-08-26  Meteor Liu  <meteor1113@gmail.com>
 
 	* init-basic.el: Add (setq cua-keep-region-after-copy t).
