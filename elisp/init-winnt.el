@@ -19,5 +19,9 @@
       (dolist (dir include-dir)
         (semantic-add-system-include dir 'c++-mode))))
 
+;; hack server-start on windows
+;; (and (= emacs-major-version 23)
+;;      (defun server-ensure-safe-dir (dir) "Noop" t))
+
 
 (provide 'init-winnt)
