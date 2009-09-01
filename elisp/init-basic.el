@@ -44,6 +44,9 @@
 (add-to-list 'auto-mode-alist
              '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\)\\'" . nxml-mode))
 (setq nxml-bind-meta-tab-to-complete-flag t)
+(add-hook 'nxml-mode-hook
+          '(lambda ()
+             (set-syntax-table sgml-mode-syntax-table)))
 
 
 ;;; program setting
