@@ -1,3 +1,7 @@
+2009-09-04  Meteor Liu  <meteor1113@gmail.com>
+
+	* init-misc.el: use yasnippet in org-mode for yasnippet-0.6.1b.(from joaotavora)
+
 2009-09-01  Meteor Liu  <meteor1113@gmail.com>
 
 	* init-basic.el (nxml-mode-hook): Make nxml-mode can show <> in show-paren-mode.

@@ -39,9 +39,21 @@
 (require 'yasnippet-bundle)
 (let ((this-dir (file-name-directory (or load-file-name (buffer-file-name)))))
   (yas/load-directory (expand-file-name "snippets" this-dir)))
-(add-hook 'org-mode-hook
-          #'(lambda ()
-              (local-set-key [tab] 'yas/expand))) ; let org-mode use yasnippet
+;; use yasnippet in org-mode
+;; (add-hook 'org-mode-hook
+;;           #'(lambda ()
+;;               (local-set-key [tab] 'yas/expand)))
+(defun yas/advise-indent-function (function-symbol)
+  (eval `(defadvice ,function-symbol (around yas/try-expand-first activate)
+           ,(format
+             "Try to expand a snippet before point, then call `%s' as usual"
+             function-symbol)
+           (let ((yas/fallback-behavior nil))
+             (unless (and (interactive-p)
+                          (yas/expand))
+               ad-do-it)))))
+
+(yas/advise-indent-function 'org-cycle)
 
 (require 'auto-complete)
 (global-auto-complete-mode t)
