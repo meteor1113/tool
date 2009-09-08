@@ -10,14 +10,15 @@
 
 
 ;;; load-path setting
-(let* ((this-dir (file-name-directory (or load-file-name (buffer-file-name))))
-       (lisp-dir (expand-file-name "lisp" this-dir)))
-  (add-to-list 'load-path this-dir)
-  (add-to-list 'load-path lisp-dir)
-  (let ((old-dir default-directory))
-    (cd lisp-dir)
-    (normal-top-level-add-subdirs-to-load-path)
-    (cd old-dir)))
+(let* ((dir (file-name-directory (or load-file-name (buffer-file-name))))
+       (lisp-dir (expand-file-name "lisp" dir)))
+  (add-to-list 'load-path dir)
+  (when (file-exists-p lisp-dir)
+    (progn (add-to-list 'load-path lisp-dir)
+           (let ((old-dir default-directory))
+             (cd lisp-dir)
+             (normal-top-level-add-subdirs-to-load-path)
+             (cd old-dir)))))
 
 
 ;;; misc setting
@@ -37,12 +38,9 @@
              (doxymacs-font-lock)))
 
 (require 'yasnippet-bundle)
-(let ((this-dir (file-name-directory (or load-file-name (buffer-file-name)))))
-  (yas/load-directory (expand-file-name "snippets" this-dir)))
-;; use yasnippet in org-mode
-;; (add-hook 'org-mode-hook
-;;           #'(lambda ()
-;;               (local-set-key [tab] 'yas/expand)))
+(let ((dir (file-name-directory (or load-file-name (buffer-file-name)))))
+  (yas/load-directory (expand-file-name "snippets" dir)))
+;; use yasnippet in org-mode from joaotavora
 (defun yas/advise-indent-function (function-symbol)
   (eval `(defadvice ,function-symbol (around yas/try-expand-first activate)
            ,(format
@@ -52,7 +50,6 @@
              (unless (and (interactive-p)
                           (yas/expand))
                ad-do-it)))))
-
 (yas/advise-indent-function 'org-cycle)
 
 (require 'auto-complete)

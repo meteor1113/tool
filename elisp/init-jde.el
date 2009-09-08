@@ -10,7 +10,7 @@
 
 
 ;;; jde setting
-(require 'jde)
+(require 'jde nil t)
 (setq jde-enable-abbrev-mode t)
 (if (boundp 'ac-modes)
     (add-to-list 'ac-modes 'jde-mode))
