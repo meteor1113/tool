@@ -650,27 +650,27 @@ Here's an example:
        ["Wrap region in exit marker" 
         (setq yas/wrap-around-region
               (not yas/wrap-around-region))
-        :help "If t automatically wrap the selected text in the $0 snippet exit"
+        :help "If non-nil automatically wrap the selected text in the $0 snippet exit"
         :style toggle :selected yas/wrap-around-region]
        ["Allow stacked expansions " 
         (setq yas/triggers-in-field
               (not yas/triggers-in-field))
-        :help "If t allow snippets to be triggered inside other snippet fields"
+        :help "If non-nil allow snippets to be triggered inside other snippet fields"
         :style toggle :selected yas/triggers-in-field]
        ["Revive snippets on undo " 
         (setq yas/snippet-revival
               (not yas/snippet-revival))
-        :help "If t allow snippets to become active again after undo"
+        :help "If non-nil allow snippets to become active again after undo"
         :style toggle :selected yas/snippet-revival]
        ["Good grace " 
         (setq yas/good-grace
               (not yas/good-grace))
-        :help "If t don't raise errors in bad embedded eslip in snippets"
+        :help "If non-nil don't raise errors in bad embedded eslip in snippets"
         :style toggle :selected yas/good-grace]
        ["Ignore filenames as triggers" 
         (setq yas/ignore-filenames-as-triggers
               (not yas/ignore-filenames-as-triggers))
-        :help "If t don't derive tab triggers from filenames"
+        :help "If non-nil don't derive tab triggers from filenames"
         :style toggle :selected yas/ignore-filenames-as-triggers]
        )
       "----"
@@ -688,7 +688,6 @@ Here's an example:
   (define-key yas/minor-mode-map "\C-c&\C-v" 'yas/visit-snippet-file)
   (define-key yas/minor-mode-map "\C-c&\C-f" 'yas/find-snippets))
 
-
 (defun yas/trigger-key-reload (&optional unbind-key)
   "Rebind `yas/expand' to the new value of `yas/trigger-key'.
 
@@ -702,6 +701,9 @@ With optional UNBIND-KEY, try to unbind that key from
               (stringp yas/trigger-key)
               (not (string= yas/trigger-key "")))
     (define-key yas/minor-mode-map (read-kbd-macro yas/trigger-key) 'yas/expand)))
+
+;;; eval'ed on require/load
+(yas/init-minor-keymap)
 
 ;;;###autoload
 (define-minor-mode yas/minor-mode
@@ -736,7 +738,9 @@ Key bindings:
                 (> (hash-table-count yas/snippet-tables) 0))
       (yas/reload-all))))
 
-(defvar yas/dont-activate nil
+(defvar yas/dont-activate #'(lambda ()
+                              (and yas/root-directory
+                                   (null (yas/get-snippet-tables))))
   "If non-nil don't let `yas/minor-mode-on' active yas for this buffer.
 
 `yas/minor-mode-on' is usually called by `yas/global-mode' so
@@ -751,8 +755,10 @@ behaviour.")
 Do this unless `yas/dont-activate' is t or the function
 `yas/get-snippet-tables' (which see), returns an empty list."
   (interactive)
-  (unless (or yas/dont-activate
-              (null (yas/get-snippet-tables)))
+  (unless (or (and (functionp yas/dont-activate)
+                   (funcall yas/dont-activate))
+              (and (not (functionp yas/dont-activate))
+                   yas/dont-activate))
     (yas/minor-mode 1)))
 
 (defun yas/minor-mode-off ()
@@ -1459,7 +1465,7 @@ content of the file is the template."
     (when restore-global-mode
       (yas/global-mode 1))
 
-    (message "done.")))
+    (message "[yas] Reloading everything... Done.")))
 
 (defun yas/quote-string (string)
   "Escape and quote STRING.
@@ -1536,8 +1542,7 @@ Here's the default value for all the parameters:
       (insert ";;;;      Auto-generated code         ;;;;\n")
       (insert ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n")
       (insert "(defun yas/initialize-bundle ()\n"
-              "  \"Initialize YASnippet and load snippets in the bundle.\""
-              "  (yas/global-mode 1)\n")
+              "  \"Initialize YASnippet and load snippets in the bundle.\"")
       (flet ((yas/define-snippets
               (mode snippets &optional parent-or-parents)
               (insert ";;; snippets for " (symbol-name mode) "\n")
@@ -1567,7 +1572,9 @@ Here's the default value for all the parameters:
           (dolist (subdir (yas/subdirs dir))
             (yas/load-directory-1 subdir nil 'no-hierarchy-parents))))
 
+      (insert "  (yas/global-mode 1)\n")
       (insert ")\n\n" code "\n")
+      
       (insert "(provide '"
               (file-name-nondirectory
                (file-name-sans-extension
@@ -1855,8 +1862,8 @@ defined in `yas/fallback-behavior'"
                                  (stringp yas/trigger-key)
                                  (read-kbd-macro yas/trigger-key))) 
                     (command-1 (and keys-1 (key-binding keys-1)))
-                    (command-2 (and keys-2(key-binding keys-2)))
-                    (command (or (and (not (eq' command-1 'yas/expand))
+                    (command-2 (and keys-2 (key-binding keys-2)))
+                    (command (or (and (not (eq command-1 'yas/expand))
                                       command-1)
                                  command-2)))
                (when (and (commandp command)
@@ -3466,23 +3473,6 @@ When multiple expressions are found, only the last one counts."
          (yas/check-commit-snippet))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Evaluated on load or require
-;;
-;; ;;;### eval this on require!
-;; (progn
-;;   (yas/init-minor-keymap))
-
-;; ;;;### eval this on require! 
-;; (progn
-;;   (yas/init-major-keymap))
-
-;; ;;;### eval this on require!
-;; (progn
-;;   (when yas/root-directory
-;;     (yas/reload-all)))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Debug functions.  Use (or change) at will whenever needed.
 ;;
 ;; some useful debug code for looking up snippet tables
@@ -3945,8 +3935,7 @@ Use multiple times to bind different COMMANDs to the same KEY."
 ;;;;      Auto-generated code         ;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun yas/initialize-bundle ()
-  "Initialize YASnippet and load snippets in the bundle."  (yas/global-mode 1)
-;;; snippets for text-mode
+  "Initialize YASnippet and load snippets in the bundle.";;; snippets for text-mode
 (yas/define-snippets 'text-mode
 		     '(("email" "`(replace-regexp-in-string \"@\" \"@NOSPAM.\" user-mail-address)`" "(user's email)" nil nil nil nil nil)
 		       ("time" "`(current-time-string)`" "(current time)" nil nil nil nil nil))
@@ -4273,7 +4262,7 @@ Use multiple times to bind different COMMANDs to the same KEY."
 (yas/define-snippets 'python-mode
 		     '(("__" "__${init}__" "__...__" nil nil nil nil nil)
 		       ("class" "class ${1:ClassName}(${2:object}):\n    \"\"\"$3\n    \"\"\"\n\n    def __init__(self, $4):\n        \"\"\"$5\n        ${4:$\n        (let* ((indent\n                (concat \"\\n\" (make-string (current-column) 32)))\n               (args\n                (mapconcat\n                 '(lambda (x)\n                    (if (not (string= (nth 0 x) \"\"))\n                        (concat \"- \" (char-to-string 96) (nth 0 x)\n                                (char-to-string 96) \":\")))\n                 (mapcar\n                  '(lambda (x)\n                     (mapcar\n                      (lambda (x)\n                        (replace-regexp-in-string \"[[:blank:]]*$\" \"\"\n                         (replace-regexp-in-string \"^[[:blank:]]*\" \"\" x))) x))\n                  (mapcar '(lambda (x) (split-string x \"=\"))\n                          (split-string text \",\")))\n                 indent)))\n          (if (string= args \"\")\n              (make-string 3 34)\n            (mapconcat\n             'identity\n             (list \"\" \"Arguments:\" args (make-string 3 34))\n             indent)))\n        }\n        ${4:$\n        (mapconcat\n         '(lambda (x)\n            (if (not (string= (nth 0 x) \"\"))\n                (concat \"self._\" (nth 0 x) \" = \" (nth 0 x))))\n         (mapcar\n          '(lambda (x)\n             (mapcar\n              '(lambda (x)\n                 (replace-regexp-in-string \"[[:blank:]]*$\" \"\"\n                  (replace-regexp-in-string \"^[[:blank:]]*\" \"\" x)))\n              x))\n          (mapcar '(lambda (x) (split-string x \"=\"))\n                  (split-string text \",\")))\n         (concat \"\\n\" (make-string (current-column) 32)))\n        }\n        $0\n" "class" nil nil nil nil nil)
-		       ("def" "def ${1:name}($2):\n    \"\"\"$3\n    the comments dont enter into it stupid\n    ${2:$\n      (let* \n        ((indent\n            (concat \"\\n\" (make-string (current-column) 32)))\n           (args\n            (mapconcat\n             '(lambda (x)\n                (if (not (string= (nth 0 x) \"\"))\n                    (concat \"- \" (char-to-string 96) (nth 0 x)\n                            (char-to-string 96) \":\")))\n             (mapcar\n              '(lambda (x)\n                 (mapcar\n                  '(lambda (x)\n                     (replace-regexp-in-string \"[[:blank:]]*$\" \"\"\n                      (replace-regexp-in-string \"^[[:blank:]]*\" \"\" x)))\n                  x))\n              (mapcar '(lambda (x) (split-string x \"=\"))\n                      (split-string text \",\")))\n             indent)))\n      (if (string= args \"\")\n          (make-string 3 34)\n        (mapconcat\n         'identity\n         (list \"\" \"Arguments:\" args (make-string 3 34))\n         indent)))\n    }\n    $0\n" "def" nil nil nil nil nil)
+		       ("def" "def ${1:name}($2):\n    \"\"\"$3\n    ${2:$\n      (let* \n        ((indent\n            (concat \"\\n\" (make-string (current-column) 32)))\n           (args\n            (mapconcat\n             '(lambda (x)\n                (if (not (string= (nth 0 x) \"\"))\n                    (concat \"- \" (char-to-string 96) (nth 0 x)\n                            (char-to-string 96) \":\")))\n             (mapcar\n              '(lambda (x)\n                 (mapcar\n                  '(lambda (x)\n                     (replace-regexp-in-string \"[[:blank:]]*$\" \"\"\n                      (replace-regexp-in-string \"^[[:blank:]]*\" \"\" x)))\n                  x))\n              (mapcar '(lambda (x) (split-string x \"=\"))\n                      (split-string text \",\")))\n             indent)))\n      (if (string= args \"\")\n          (make-string 3 34)\n        (mapconcat\n         'identity\n         (list \"\" \"Arguments:\" args (make-string 3 34))\n         indent)))\n    }\n    $0\n" "def" nil nil nil nil nil)
 		       ("defm" "def ${1:name}(self, $2):\n    \"\"\"$3\n    ${2:$\n    (let* ((indent\n            (concat \"\\n\" (make-string (current-column) 32)))\n           (args\n            (mapconcat\n             '(lambda (x)\n                (if (not (string= (nth 0 x) \"\"))\n                    (concat \"- \" (char-to-string 96) (nth 0 x)\n                            (char-to-string 96) \":\")))\n             (mapcar\n              '(lambda (x)\n                 (mapcar\n                  '(lambda (x)\n                     (replace-regexp-in-string \"[[:blank:]]*$\" \"\"\n                      (replace-regexp-in-string \"^[[:blank:]]*\" \"\" x)))\n                  x))\n              (mapcar '(lambda (x) (split-string x \"=\"))\n                      (split-string text \",\")))\n             indent)))\n      (if (string= args \"\")\n          (make-string 3 34)\n        (mapconcat\n         'identity\n         (list \"\" \"Arguments:\" args (make-string 3 34))\n         indent)))\n    }\n    $0\n" "defm" nil nil nil nil nil)
 		       ("for" "for ${var} in ${collection}:\n    $0" "for ... in ... : ..." nil nil nil nil nil)
 		       ("ifmain" "if __name__ == '__main__':\n    $0" "if __name__ == '__main__': ..." nil nil nil nil nil)
@@ -4459,6 +4448,7 @@ Use multiple times to bind different COMMANDs to the same KEY."
 		     '(text-mode))
 
 
+  (yas/global-mode 1)
 )
 
 (yas/initialize-bundle)
