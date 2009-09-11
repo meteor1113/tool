@@ -3673,9 +3673,9 @@ handle the end-of-buffer error fired in it by calling
 ;; disable c-electric-* serial command in YAS fields
 (add-hook 'c-mode-common-hook
           '(lambda ()
-             (make-local-variable 'yas/keymap)
-             (dolist (k '(":" ">" ";" "<" "{" "}"))
-               (define-key yas/keymap k 'self-insert-command))))
+          (dolist (k '(":" ">" ";" "<" "{" "}"))
+            (define-key (symbol-value (make-local-variable 'yas/keymap))
+              k 'self-insert-command))))
 
 
 ;;; yasnippet.el ends here
