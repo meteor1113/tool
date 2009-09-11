@@ -45,8 +45,7 @@
           #'(lambda ()
               (setq yas/fallback-behavior
                     `(apply ,(lookup-key org-mode-map [tab])))
-              (local-set-key [tab] 'yas/expand)
-              (define-key yas/keymap [tab] 'yas/next-field-or-maybe-expand)))
+              (local-set-key [tab] 'yas/expand)))
 
 (require 'auto-complete)
 (global-auto-complete-mode t)
