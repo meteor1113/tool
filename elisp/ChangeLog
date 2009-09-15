@@ -1,3 +1,7 @@
+2009-09-15  Meteor Liu  <meteor1113@gmail.com>
+
+	* init-basic.el: Set key for comment-or-uncomment-region.
+
 2009-09-04  Meteor Liu  <meteor1113@gmail.com>
 
 	* init-misc.el: use yasnippet in org-mode for yasnippet-0.6.1b.(from joaotavora)

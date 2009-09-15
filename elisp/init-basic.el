@@ -49,6 +49,8 @@
           '(lambda ()
              (set-syntax-table sgml-mode-syntax-table)))
 
+(global-set-key (kbd "C-M-;") 'comment-or-uncomment-region)
+
 
 ;;; program setting
 (defun program-common-function ()
