@@ -24,7 +24,7 @@
 ;;; misc setting
 ;; (require 'gtags nil t)
 ;; (require 'htmlize nil t)
-(require 'smart-compile nil t)
+;; (require 'smart-compile nil t)
 (require 'unicad nil t)
 (require 'xcscope nil t)
 
@@ -40,11 +40,8 @@
 (require 'yasnippet-bundle)
 (let ((dir (file-name-directory (or load-file-name (buffer-file-name)))))
   (yas/load-directory (expand-file-name "snippets" dir)))
-;; use yasnippet in org-mode
 (add-hook 'org-mode-hook
           #'(lambda ()
-              (setq yas/fallback-behavior
-                    `(apply ,(lookup-key org-mode-map [tab])))
               (local-set-key [tab] 'yas/expand)))
 
 (require 'auto-complete)
