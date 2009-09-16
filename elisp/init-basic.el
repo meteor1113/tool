@@ -39,8 +39,8 @@
 (add-hook 'org-mode-hook
           (lambda ()
             (imenu-add-menubar-index)
-            (auto-fill-mode t)
-            (setq comment-start nil)))
+            (setq comment-start nil)
+            (auto-fill-mode t)))
 
 (add-to-list 'auto-mode-alist
              '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\)\\'" . nxml-mode))
