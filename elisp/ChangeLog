@@ -1,3 +1,7 @@
+2009-09-17  Meteor Liu  <meteor1113@gmail.com>
+
+	* init-basic.el (org-mode-hook): Add (setq comment-start nil) for org-mode.
+
 2009-09-15  Meteor Liu  <meteor1113@gmail.com>
 
 	* init-basic.el: Set key for comment-or-uncomment-region.
