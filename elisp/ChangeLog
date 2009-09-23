@@ -1,5 +1,7 @@
 2009-09-23  Meteor Liu  <meteor1113@gmail.com>
 
+	* init-mac.el: Remove.
+
 	* lisp/pysmell.el: Remove.
 
 	* lisp/company/company-ropemacs.el (company-ropemacs): Change (company-pysmell--grab-symbol) to (company-ropemacs--grab-symbol).
