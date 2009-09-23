@@ -42,13 +42,14 @@
             (setq comment-start nil)
             (auto-fill-mode t)))
 
-(add-to-list 'auto-mode-alist
-             '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\)\\'" . nxml-mode))
-(setq nxml-bind-meta-tab-to-complete-flag t)
-(require 'sgml-mode)
-(add-hook 'nxml-mode-hook
-          '(lambda ()
-             (set-syntax-table sgml-mode-syntax-table)))
+(when (require 'nxml-mode nil t)
+  (add-to-list 'auto-mode-alist
+               '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\)\\'" . nxml-mode))
+  (setq nxml-bind-meta-tab-to-complete-flag t)
+  (add-hook 'nxml-mode-hook
+            '(lambda ()
+               (require 'sgml-mode)
+               (set-syntax-table sgml-mode-syntax-table))))
 
 (global-set-key (kbd "C-M-;") 'comment-or-uncomment-region)
 
