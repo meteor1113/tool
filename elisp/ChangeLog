@@ -1,3 +1,9 @@
+2009-09-23  Meteor Liu  <meteor1113@gmail.com>
+
+	* lisp/pysmell.el: Remove.
+
+	* lisp/company/company-ropemacs.el (company-ropemacs): Change (company-pysmell--grab-symbol) to (company-ropemacs--grab-symbol).
+
 2009-09-17  Meteor Liu  <meteor1113@gmail.com>
 
 	* init-basic.el (org-mode-hook): Add (setq comment-start nil) for org-mode.
