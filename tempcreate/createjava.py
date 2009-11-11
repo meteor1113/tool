@@ -17,6 +17,7 @@ include h and m file.
 
 
 # import standard library module
+import re
 
 # import other library module
 
@@ -31,6 +32,7 @@ def CreateFile(classname, author = "", email = "", cr = "", lowercase = False):
     cr = "/**\n" + cr
     cr = cr.replace("\n", "\n * ")
     cr = cr + "\n */"
+    cr = re.sub("\r\n|\r|\n", "\n", cr)
     cr = cr.replace(" * \n", " *\n")
 
     thinname = classname
