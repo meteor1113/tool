@@ -22,12 +22,12 @@ import os
 
 
 def get_config_path():
-    folder = os.path.abspath(os.path.dirname(__file__))
+    folder = os.path.abspath(os.path.curdir)
     return os.path.join(folder, "tempcreate.ini")
 
 
 def get_license_dir():
-    folder = os.path.abspath(os.path.dirname(__file__))
+    folder = os.path.abspath(os.path.curdir)
     return os.path.join(folder, "licenses")
 
 

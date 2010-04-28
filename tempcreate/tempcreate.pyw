@@ -19,10 +19,10 @@
 
 # import customer module
 try:
-    import wxcreate
+    from tempcreate import wxcreate
     cc = wxcreate
 except:
-    import tkcreate
+    from tempcreate import tkcreate
     cc = tkcreate
 
 
