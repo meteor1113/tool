@@ -25,7 +25,7 @@ import common
 
 HELP_STRING = """
 Usage %s [-c] [-a] [-e] [-l] | [-h]
-    -c CLASSNAME, --classname=CLASSNAME 
+    -c CLASSNAME, --classname=CLASSNAME
         set class name
     -a AUTHOR, --author=AUTHOR
         set author name
@@ -42,12 +42,13 @@ def Usage():
     print HELP_STRING % sys.argv[0]
 
 
-def Replace(content, classname, author, email, cr):
+def Replace(content, classname, filethinname, author, email, cr):
     year = str(datetime.date.today().year)
     datenow = datetime.date.today().isoformat()
     dtnow = datetime.datetime.now().isoformat()
     content = content.replace("%copyright%", cr)
     content = content.replace("%year%", year)
+    content = content.replace("%filethinname%", filethinname)
     content = content.replace("%ClassName%", classname)
     content = content.replace("%classname%", classname.lower())
     content = content.replace("%CLASSNAME%", classname.upper())
@@ -61,14 +62,15 @@ def Replace(content, classname, author, email, cr):
     return content
 
 
-def CreateFile(tempfile, filename, classname, author = "", 
+def CreateFile(tempfile, filethinname, fileext, classname, author = "",
                email = "", cr = ""):
     tempf = file(tempfile, "r")
     tempcont = tempf.read()
     tempf.close()
-    content = Replace(tempcont, classname, author, email, cr)
+    content = Replace(tempcont, classname, filethinname, author, email, cr)
     if not os.path.exists("result"):
         os.mkdir("result")
+    filename = filethinname + fileext;
     resultFile = open("result/" + filename, "w")
     resultFile.write(content)
     resultFile.close()

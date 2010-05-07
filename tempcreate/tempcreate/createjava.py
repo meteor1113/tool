@@ -38,7 +38,7 @@ def CreateFile(classname, author = "", email = "", cr = "", lowercase = False):
     thinname = classname
     if (lowercase):
         thinname = thinname.lower()
-    create.CreateFile(JAVA_FILE_TEMPLATE, thinname + ".java",
+    create.CreateFile(JAVA_FILE_TEMPLATE, thinname, ".java",
                       classname, author, email, cr)
 
 

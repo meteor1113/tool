@@ -1,7 +1,7 @@
 %copyright%
 
 
-#import "%ClassName%.h"
+#import "%filethinname%.h"
 // #import <standard C library headers>
 
 // #import <standard ObjectiveC library headers>

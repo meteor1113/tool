@@ -35,7 +35,7 @@ def CreateFile(classname, author = "", email = "", cr = "", lowercase = True):
     thinname = classname
     if (lowercase):
         thinname = thinname.lower()
-    create.CreateFile(PY_FILE_TEMPLATE, thinname + ".py",
+    create.CreateFile(PY_FILE_TEMPLATE, thinname, ".py",
         classname, author, email, cr)
 
 

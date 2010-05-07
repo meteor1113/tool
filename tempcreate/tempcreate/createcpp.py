@@ -40,11 +40,11 @@ def CreateFile(classname, author = "", email = "", cr = "", lowercase = True):
     thinname = classname
     if (lowercase):
         thinname = thinname.lower()
-    create.CreateFile(H_FILE_TEMPLATE, thinname + ".h",
+    create.CreateFile(H_FILE_TEMPLATE, thinname, ".h",
                       classname, author, email, cr)
-    create.CreateFile(CPP_FILE_TEMPLATE, thinname + ".cpp",
+    create.CreateFile(CPP_FILE_TEMPLATE, thinname, ".cpp",
                       classname, author, email, cr)
-    create.CreateFile(HPP_FILE_TEMPLATE, thinname + ".hpp",
+    create.CreateFile(HPP_FILE_TEMPLATE, thinname, ".hpp",
                       classname, author, email, cr)
 
 

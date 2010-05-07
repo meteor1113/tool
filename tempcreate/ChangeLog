@@ -1,3 +1,7 @@
+2010-05-07  Meteor Liu  <meteor1113@gmail.com>
+
+	* Fix lowercase bug.
+
 2009-04-22  Meteor Liu  <meteor1113@gmail.com>
 
 	* Add lowercase filename option.
