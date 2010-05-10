@@ -10,7 +10,7 @@
 
 
 set temppath=%PATH%
-set PATH=%~d0%~p0;c:\emacs\bin;%PATH%
+set PATH=%~d0%~p0;c:\emacs\bin;C:\msys\1.0\bin;C:\MinGW\bin;%PATH%
 
 gtags.exe
 
