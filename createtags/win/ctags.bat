@@ -10,7 +10,7 @@
 
 
 set temppath=%PATH%
-set PATH=%~d0%~p0;c:\program files\vim\vim72;c:\emacs\bin;c:\emacs-23.3\bin;c:\emacs-23.2\bin;c:\emacs-23.1\bin;c:\emacs-22.3\bin;C:\msys\1.0\bin;C:\MinGW\bin;%PATH%
+set PATH=%~d0%~p0;%~d0%~p0bin;c:\program files\vim\vim72;c:\emacs\bin;c:\emacs-23.3\bin;c:\emacs-23.2\bin;c:\emacs-23.1\bin;c:\emacs-22.3\bin;C:\msys\1.0\bin;C:\MinGW\bin;%PATH%
 
 ctags.exe -R --c++-kinds=+p --fields=+iaS --extra=+q
 ctags.exe -a --c++-kinds=+p --fields=+iaS --extra=+q -R c:/mingw/include

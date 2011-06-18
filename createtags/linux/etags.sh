@@ -19,3 +19,4 @@ find . -type f -name "*.[jJ][aA][vV][aA]" >> cscope.files
 find . -type f -name "*.[eE][lL]" >> cscope.files
 find /usr/include -type f -name "*" >> cscope.files
 cat cscope.files | etags -
+rm cscope.files

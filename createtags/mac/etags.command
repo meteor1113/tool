@@ -24,3 +24,4 @@ find /System/Library/Frameworks/AppKit.framework/Versions/C/Headers -type f -nam
 find /System/Library/Frameworks/Foundation.framework/Versions/C/Headers -type f -name "*" >> cscope.files
 find /System/Library/Frameworks/CoreData.framework/Versions/A/Headers -type f -name "*" >> cscope.files
 cat cscope.files | etags -
+rm cscope.files
