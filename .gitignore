@@ -10,3 +10,4 @@
 *.pyc
 *.ropeproject*
 tempcreate/tempcreate.ini
+tempcreate/result
