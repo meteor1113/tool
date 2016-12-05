@@ -1,6 +1,7 @@
 git config [--global] core.autocrlf false
 git config [--global] credential.helper wincred
 git config [--global] http.postBuffer 524288000
+git config --local remote.origin.proxy 127.0.0.1:1080
 git remote rm origin
 git remote add origin https://username:password@github.com/username/project.git
 git config remote.origin.url https://username:password@github.com/username/project.git
