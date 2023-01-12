@@ -4,12 +4,13 @@
 set HOST=azvm1
 :: set KEY_FILE="id_rsa"
 
-@REM :LOOP
+:LOOP
 
 echo [%HOST%] [%date% %time%] ssh running...
-"C:\Program Files\Git\usr\bin\ssh.exe" %HOST% -fNR 0.0.0.0:10022:127.0.0.1:22 -o "ServerAliveInterval 60" -o "ServerAliveCountMax 3"
+ssh %HOST% -NR 0.0.0.0:10022:127.0.0.1:22 -o "ServerAliveInterval 60" -o "ServerAliveCountMax 3"
+@REM "C:\Program Files\Git\usr\bin\ssh.exe" %HOST% -fNR 0.0.0.0:10022:127.0.0.1:22 -o "ServerAliveInterval 60" -o "ServerAliveCountMax 3"
 
-@REM timeout 60 > NUL
-@REM goto LOOP
+timeout 5
+goto LOOP
 
-@REM echo [%HOST%] [%date% %time%] exited
+echo [%HOST%] [%date% %time%] exited
